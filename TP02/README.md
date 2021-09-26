@@ -65,7 +65,7 @@ At this step, our I/O are printf and scanf (and they synchronise the loops, too)
 
 The compilation chain into Arduino is depicted in the next picture:
 
-![Compilation Chain](figs/compilChainLustre.pdf)
+![Compilation Chain](figs/compilChainLustre.png)
 
 In a **new**  directory:
 * make a "library" `glue_arduino.c` and its `glue_arduino.h` that exposes at least the three useful functions; 
