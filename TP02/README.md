@@ -1,4 +1,4 @@
-# CS 442 . Lab: Lustre Compilation
+# CS 442 . Lab: Lustre + Arduino Compilation
 
   * Laure Gonnord
   * Version: 2021.01
@@ -87,51 +87,3 @@ Create a new Makefile and a `test.c` to validate the functionalities of your lib
 and also to add some:
 * Compile, test.
 * Modify the behavior (inside the Lustre program) so that the counter resets only if the reset is pushed 2 sucessive cycles. Describe carefully how you proceed on your notes. What files need to be regenerated ?
-
-## Step 3 Practise Lustre (HW :pencil:)
-
-Now that we have shown a working toolchain for Arduino, let us come back to standalone Lustre programs. 
-
-The main features of the language are described in [this tutorial](https://www-verimag.imag.fr/DIST-TOOLS/SYNCHRONE/lustre-v4/distrib/lustre_tutorial.pdf) (pages 1 to 11)
-
-:warning:  :pencil: TODO : Make a deposit of the following on Chamilo before the next lab:
-
-### Exercise 1: Air-conditioner controller
-
-We want to write a Lustre node implementing an air-conditioner controller.
-```Lustre
-node AC_Controller (onOff: bool; tAmb, tUser: int)
-returns (isOn: bool; tOut: int) ;
--- COMPLETE
-```
-
-* `onOff` is a boolean signal, true whenever the `onOff` button of the air conditioner is pushed (every time the user pushes this button, the state of the air-conditioner changes from `isOn=true` to `isOn=false` and conversely).
-* `tAmb` is the ambient temperature (in degrees).
-* `tUser` is the temperature required by the user and that the room must reach.
-* `tOut` is the temperature of the air issued by the air-conditioner. You must choose a (reasonable but not necessarily accurate) way to compute this temperature.
-
- 
-
-### Exercise 2: Roller shutter controller
-
-We want to write a Lustre node controlling the automatic opening and closing of the roller shutters of a window:
-```Lustre
-node Shutter_Controller(onOff, isOpen, isClosed: bool; luminosity, time: int) returns (isOn: bool; open, close: bool); 
-
--- COMPLETE
-```
- 
-* `onOff` is true whenever the "`onOff`" button of the device is pushed (every time the user pushes this button, the state of the controller changes from `isOn=true` to `isOn=false` and conversely).
-* `isOpen` and `isClosed` are true if the shutters are respectively in open or closed position. These two parameters cannot be simultaneously true but may, instead, be simultaneously wrong (half closed shutter).
-* `luminosity` represents information sent by a light sensor as an integer ranging from 0 (full darkness) to 10 (full day).
-* `time` is an integer ranging from 0 to 23 and corresponds to the current hour.
-* `open`, `close` are commands sent to the shutter. They must ensure that the following properties are satisfied: between 22:00 and 6:00 the shutters are closed. During the rest of the time, if luminosity exceeds 6, the shutters should close; if it is less than 4, they should open. Otherwise, they remain in the same state.
- 
-
-### Exercise 3 : Stopwatch
-
-Write a Lustre node implementing a stopwatch with four buttons:
-* `Start`: starts or restarts the time count.
-* `Stop`: stops the time count.
-* `Freeze`: if the stopwatch runs, this button "freezes" the displayed time but does not stop the time count. If pushed again the time count is displayed again.
-* `Reset`: works only if the stopwatch is stopped, in which case the time count is set to 0.
