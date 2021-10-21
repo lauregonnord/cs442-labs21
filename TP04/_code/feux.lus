@@ -1,0 +1,37 @@
+include "utiles.lus"
+(*
+	C'est un codage d'automate tres classique :
+   chaque ``etat'' est code par un switch, c.a.d.
+   qu'on definit les cas qui font rentrer dans l'etat (le on)
+   et les cas qui font sortir de l'etat (le off).
+   N.B. il est pratique d'introduire un etat ``tout_eteint''
+   pour faciliter l'ecriture.
+   L'automate est le suivant : (TODO for you !)
+
+*)
+
+(* TODO change the code for feux - V1 *)
+node feux (TD : bool; TI : bool; CP : bool) 
+returns (veilleuses : bool;  codes : bool; phares : bool);
+let
+  veilleuses = true;
+  codes = true;
+  phares = true;
+tel
+
+(* TODO feux2 aussi*)
+
+(* And verif node *)
+node veriffeux(TD : bool;
+               TI : bool;
+               CP : bool;
+               LP, AB : bool ) returns ( ok : bool );
+var
+  veilleuses : bool;
+  codes : bool;
+  phares : bool;
+  anti_b : bool;
+  longue_p : bool;
+let
+  ok = true;
+tel

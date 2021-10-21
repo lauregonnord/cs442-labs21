@@ -1,0 +1,30 @@
+
+node switch(orig, on, off : bool) returns (s : bool);
+let
+   s = if(orig -> pre s) then not off else on;
+tel
+
+node jafter(x : bool) returns (jax : bool);
+let
+   jax = false -> pre x;
+tel
+
+
+node edge(x : bool) returns (e : bool);
+let
+   e = x and not(jafter(x));
+tel
+
+node xedge(x : bool) returns (e : bool);
+let
+   e = x and (jafter(not x));
+tel
+
+node once_between(x,a,b: bool) returns (ok: bool);
+var in_a_b: bool;
+    x_in_a_b: bool;
+let
+	in_a_b = switch(false, a, b);
+	x_in_a_b = switch(false, x and in_a_b, b);
+	ok = xedge(not in_a_b) => xedge(not x_in_a_b); 
+tel
